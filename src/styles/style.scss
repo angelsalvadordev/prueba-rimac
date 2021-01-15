@@ -1,0 +1,26 @@
+// Config
+@import "config/functions";
+@import "config/variables";
+@import "config/mixins";
+
+// Base
+@import "base/normalize";
+@import "base/base";
+
+// Layout
+@import "layout/layout";
+
+// Components
+@import "components/myFirstComponent";
+
+// Templates
+@import "templates/header";
+@import "templates/main";
+@import "templates/footer";
+
+// Typography
+@import "themes/tipography";
+
+// Utilities
+@import "lib/utils";
+@import "lib/animations";

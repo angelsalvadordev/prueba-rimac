@@ -1,0 +1,58 @@
+// ==================================================
+// DEFAULT
+// ==================================================
+.full-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1088px;
+  padding: 0 15px;
+  margin: 0 auto;
+
+  @include responsive(xl) {
+    padding: 0;
+  }
+}
+
+// ==================================================
+// GRID TEMPLATE COLUMNS
+// ==================================================
+@for $i from 1 through 12 {
+  .template-#{$i} {
+    grid-template-columns: repeat(#{$i}, 1fr);
+  }
+}
+
+// Responsive
+@each $pointName, $pointValue in $breakpoints {
+  @include responsive($pointName) {
+    @for $i from 1 through 12 {
+      .#{$pointName}\:template-#{$i} {
+        grid-template-columns: repeat(#{$i}, 1fr);
+      }
+    }
+  }
+}
+
+// ==================================================
+// GRID COLUMN
+// Columnas de un ELEMENTO dentro de una plantilla grid
+// ==================================================
+@for $i from 1 through 12 {
+  .column-#{$i} {
+    grid-column: span ($i);
+  }
+}
+
+// Responsive
+@each $pointName, $pointValue in $breakpoints {
+  @include responsive($pointName) {
+    @for $i from 1 through 12 {
+      .#{$pointName}\:column-#{$i} {
+        grid-column: span ($i);
+      }
+    }
+  }
+}
