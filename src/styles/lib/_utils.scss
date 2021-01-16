@@ -2,9 +2,8 @@
 // DEFAULT UTILITIES
 // ==================================================
 
-// Para debugear posicion de elementos
 .debug {
-  outline: 1px solid red;
+  outline: 1px solid red; // Para debugear posicion de elementos
 }
 
 .bg-cover {
@@ -51,16 +50,5 @@
 @each $displayName, $displayValue in $displays {
   .#{$displayName} {
     display: #{$displayValue};
-  }
-}
-
-// Responsive
-@each $pointName, $pointValue in $breakpoints {
-  @include responsive($pointName) {
-    @each $displayName, $displayValue in $displays {
-      .#{$pointName}\:#{$displayName} {
-        display: #{$displayValue};
-      }
-    }
   }
 }

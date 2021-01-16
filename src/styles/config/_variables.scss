@@ -1,11 +1,17 @@
-// ================== BASICS ==================
+// ==========================
+// FONT FAMILY 
+// ==========================
+$roboto: "Roboto", sans-serif;
+
+// ==========================
+// FONT FAMILY 
+// ==========================
 $generalFontFamily: $roboto;
 $generalBackgroundColor: #333;
 
-// ================== FONT FAMILY ==================
-$roboto: "Roboto", sans-serif;
-
-// ================== COLORS ==================
+// ==========================
+// COLORS
+// ==========================
 $transparent: transparent;
 $white: #fff;
 $gray: #e0e0e0;
@@ -27,22 +33,28 @@ $orange: #ff9640;
 $success: #52c02b;
 $danger: #e16070;
 
-// ================== MEDIA QUERIES ==================
+// ==========================
+// BRAKPOINTS
+// ==========================
 $breakpoints: (
   md: 768px,
   lg: 1024px,
-  xl: 1440px,
-  xl2: 1920px,
+  xl: 1366px,
+  xl2: 1440px,
 );
 
-// ================== Z-INDEX ==================
+// ==========================
+// Z-INDEX
+// ==========================
 $z-back: -10;
 $z-normal: 1;
 $z-tooltip: 10;
 $z-fixed: 100;
 $z-modal: 1000;
 
-// ================== DISPLAYS ==================
+// ==========================
+// DISPLAYS
+// ==========================
 $displays: (
   hidden: none,
   block: block,
