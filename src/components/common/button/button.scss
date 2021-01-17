@@ -1,0 +1,27 @@
+@import "../../../styles/config/variables";
+@import "../../../styles/themes/typography";
+
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  background-color: $color-red;
+  color: $color-light;
+  transition: all 0.15s;
+
+  &:focus {
+    outline: none;
+  }
+
+  @extend %font-primary-bold-14;
+
+  &--disabled {
+    background-color: $color-gray-6;
+    color: $color-gray-4;
+  }
+}

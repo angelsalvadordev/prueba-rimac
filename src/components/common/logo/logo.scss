@@ -1,0 +1,14 @@
+@import "../../../styles/config/functions";
+@import "../../../styles/config/variables";
+@import "../../../styles/config/mixins";
+
+.logo {
+  width: 92px;
+  height: 16px;
+
+  & svg path {
+    @include responsive(xl) {
+      fill: white;
+    }
+  }
+}

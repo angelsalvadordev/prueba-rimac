@@ -1,0 +1,23 @@
+@import "../../../styles/config/functions";
+@import "../../../styles/config/variables";
+@import "../../../styles/config/mixins";
+
+.header {
+  background-color: $color-light;
+  position: relative;
+  width: 100%;
+  // top: 0;
+  // left: 0;
+  padding-top: pxToRem(18px);
+  padding-bottom: pxToRem(18px);
+
+  @include responsive(xl) {
+    background-color: $color-transparent;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

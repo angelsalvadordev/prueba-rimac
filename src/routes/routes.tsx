@@ -10,21 +10,21 @@ export const routes: IRoute[] = [
   {
     path: "/",
     isExact: true,
-    Component: lazy(() => import("../pages/home")),
+    Component: lazy(() => import("../components/views/home")),
   },
   {
     path: "/insured",
     isExact: true,
-    Component: lazy(() => import("../pages/insured")),
+    Component: lazy(() => import("../components/views/insured")),
   },
   {
     path: "/plan",
     isExact: true,
-    Component: lazy(() => import("../pages/plan")),
+    Component: lazy(() => import("../components/views/plan")),
   },
   {
     path: "/thanks",
     isExact: true,
-    Component: lazy(() => import("../pages/thanks")),
+    Component: lazy(() => import("../components/views/thanks")),
   },
 ];

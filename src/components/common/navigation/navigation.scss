@@ -1,0 +1,29 @@
+@import "../../../styles/config/functions";
+@import "../../../styles/config/variables";
+@import "../../../styles/config/mixins";
+
+.navigation {
+  display: flex;
+
+  @include responsive(xl){
+    display:none;
+  }
+
+  &__icons {
+    display: flex;
+    margin-right: 2.25rem;
+  }
+
+  &__icon {
+    $sizeIcon: 24px;
+    width: $sizeIcon;
+    height: $sizeIcon;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  &__burger {
+  }
+}

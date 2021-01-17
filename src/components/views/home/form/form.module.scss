@@ -1,0 +1,35 @@
+@import "../../../../styles/config/functions";
+@import "../../../../styles/config/variables";
+@import "../../../../styles/themes/typography";
+
+.form {
+  &__title {
+    margin-bottom: 1.5rem;
+    h2 {
+      @extend %font-primary-regular-24;
+    }
+
+    b {
+      color: $color-red;
+    }
+
+    p {
+      @extend %font-secondary-light-16;
+    }
+  }
+
+  &__input-select {
+    display: flex;
+  }
+
+  &__verify {
+    margin-bottom: pxToRem(50px);
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  &__button {
+    // display: flex;
+  }
+}

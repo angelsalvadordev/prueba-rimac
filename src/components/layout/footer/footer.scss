@@ -1,0 +1,10 @@
+@import "../../../styles/config/variables";
+@import "../../../styles/themes/typography";
+
+.footer {
+  color: $color-gray-3;
+  border-top: 1px solid $color-gray-5;
+  padding: 2rem 0;
+
+  @extend %font-secondary-light-12;
+}

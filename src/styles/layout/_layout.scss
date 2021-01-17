@@ -1,55 +1,49 @@
 // ==================================================
-// DEFAULT
+// CONTAINERS
 // ==================================================
+
 .full-container {
   width: 100%;
   max-width: 100%;
 }
 
 .container {
+  width: 100%;
   max-width: 1088px;
-  padding: 0 15px;
   margin: 0 auto;
+  padding-left: $grid-gap;
+  padding-right: $grid-gap;
 
   @include responsive(xl) {
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 // ==================================================
-// GRID TEMPLATE COLUMNS
+// GRID SISTEM
 // ==================================================
-@for $i from 1 through 12 {
-  .template-#{$i} {
-    grid-template-columns: repeat(#{$i}, 1fr);
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: $grid-gap;
 }
 
-// Responsive
-@each $pointName, $pointValue in $breakpoints {
-  @include responsive($pointName) {
-    @for $i from 1 through 12 {
-      .#{$pointName}\:template-#{$i} {
-        grid-template-columns: repeat(#{$i}, 1fr);
-      }
-    }
-  }
-}
-
-// ==================================================
+// ====================================================
 // GRID COLUMN
 // Columnas de un ELEMENTO dentro de una plantilla grid
-// ==================================================
-@for $i from 1 through 12 {
-  .column-#{$i} {
+// ====================================================
+@for $i from 1 through $grid-cols {
+  .grid-#{$i} {
     grid-column: span ($i);
   }
 }
 
 // Responsive
+// md:grid-2, lg:grid-4
 @each $pointName, $pointValue in $breakpoints {
   @include responsive($pointName) {
-    @for $i from 1 through 12 {
+    @for $i from 1 through $grid-cols {
       .#{$pointName}\:column-#{$i} {
         grid-column: span ($i);
       }
