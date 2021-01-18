@@ -1,12 +1,23 @@
 @import "../../../../styles/config/functions";
 @import "../../../../styles/config/variables";
+@import "../../../../styles/config/mixins";
 @import "../../../../styles/themes/typography";
 
 .form {
+  @include responsive(xl) {
+    width: 320px;
+    position: relative;
+  }
+
   &__title {
     margin-bottom: 1.5rem;
+
     h2 {
-      @extend %font-primary-regular-24;
+      @include font-primary-regular-24;
+
+      @include responsive(xl) {
+        @include font-primary-light-28;
+      }
     }
 
     b {
@@ -14,7 +25,8 @@
     }
 
     p {
-      @extend %font-secondary-light-16;
+      margin-top: 0.3rem;
+      @include font-secondary-light-16;
     }
   }
 
@@ -22,14 +34,23 @@
     display: flex;
   }
 
+  &__input {
+    @include responsive(xl) {
+      width: 288px;
+    }
+  }
+
   &__verify {
-    margin-bottom: pxToRem(50px);
+    margin-bottom: pxToRem(40px);
     span {
       text-decoration: underline;
     }
   }
 
   &__button {
+    @include responsive(xl) {
+      width: 176px;
+    }
     // display: flex;
   }
 }

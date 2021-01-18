@@ -1,21 +1,37 @@
 @import "../../../styles/config/functions";
 @import "../../../styles/config/variables";
+@import "../../../styles/config/mixins";
 @import "../../../styles/themes/typography";
 
 .home {
   &__container {
     display: flex;
     flex-direction: column;
+
+    @include responsive(xl) {
+      margin-top: 1rem;
+      flex-direction: row;
+    }
   }
 
   &__left {
     min-height: 366px;
     padding: 50px 0;
+
+    @include responsive(xl) {
+      width: 50%;
+    }
   }
 
   &__right {
     margin-top: 3rem;
     margin-bottom: pxToRem(50px);
+
+    @include responsive(xl) {
+      width: 50%;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }
 
@@ -23,11 +39,15 @@
   color: $color-light;
 
   &__title {
-    & h1 {
-      @extend %font-primary-light-36;
+    h1 {
+      @include font-primary-light-36;
+
+      @include responsive(xl) {
+        @include font-primary-light-48;
+      }
     }
 
-    & b {
+    b {
       display: block;
     }
   }

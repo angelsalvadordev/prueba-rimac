@@ -1,4 +1,6 @@
+@import "../../../styles/config/functions";
 @import "../../../styles/config/variables";
+@import "../../../styles/config/mixins";
 @import "../../../styles/themes/typography";
 
 .footer {
@@ -6,5 +8,9 @@
   border-top: 1px solid $color-gray-5;
   padding: 2rem 0;
 
-  @extend %font-secondary-light-12;
+  @include font-secondary-light-12;
+
+  @include responsive(xl) {
+    display: none;
+  }
 }

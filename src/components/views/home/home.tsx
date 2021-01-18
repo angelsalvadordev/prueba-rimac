@@ -1,25 +1,11 @@
 import BgApp from "components/common/bg-left";
 import Footer from "components/layout/footer";
 import Header from "components/layout/header";
-import { useDispatch } from "react-redux";
-import { saveUser } from "store/actions/user";
 import Form from "./form";
 
 import "./home.scss";
 
 const HomePage = () => {
-  const dispatch = useDispatch();
-
-  const handleClick = () => {
-    console.log("Clickeado!");
-    dispatch(
-      saveUser({
-        nomCompleto: "Angel Salvador",
-        direccion: "Calle Yahuar Huaca 123",
-      })
-    );
-  };
-
   return (
     <div className="home">
       <BgApp />

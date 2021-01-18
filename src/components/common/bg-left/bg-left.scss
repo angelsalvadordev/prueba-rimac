@@ -17,10 +17,11 @@
   z-index: -1;
 
   @include responsive(xl) {
-    width: 55%;
-    height: 80vh;
+    width: 53%;
+    min-height: 628px;
     top: 0;
     left: -3%;
+    overflow: initial;
     border-bottom-right-radius: 100px;
     transform: skew(-5deg, 0);
   }
@@ -30,5 +31,11 @@
     position: absolute;
     top: 95px;
     right: -48px;
+
+    @include responsive(xl) {
+      height: 448px;
+      top: 130px;
+      right: -150px;
+    }
   }
 }

@@ -2,24 +2,143 @@ import Button from "components/common/button";
 import Checkbox from "components/common/checkbox/indes";
 import Input from "components/common/input";
 import Select from "components/common/select";
+import { FormEvent, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { verifyDocInDB } from "store/actions/auth";
+import useForm from "utilities/hooks/useForm";
 import { IOption } from "utilities/types/select";
+import { validateCE, validateDate, validateDNI, validatePhone } from "utilities/validators/inputs";
 import styles from "./form.module.scss";
 
-const Form = () => {
-  const handleBlur = () => {
-    console.log("clickeado!");
+const Form = (props: any) => {
+  console.log("[PROPS] ", props);
+  // Opciones para componente select
+  const selectOptions: IOption[] = [
+    { value: "dni", name: "DNI" },
+    { value: "ce", name: "C.E." },
+  ];
+
+  // ===================================================================
+  // ESTADOS GLOBALES
+  // ===================================================================
+  const dispatch = useDispatch();
+
+  // ===================================================================
+  // ESTADOS LOCALES
+  // ===================================================================
+  // Custom Hook para estado de elementos de formulario
+  const [formValues, handleInputChange, handleSelectChange, handleCheckboxChange] = useForm({
+    type: "dni",
+    document: "",
+    birth: "",
+    phone: "",
+    protection_policy: false,
+    shipping_policy: false,
+  });
+
+  // Data del estado local
+  const { type, document, birth, phone, protection_policy, shipping_policy } = formValues;
+
+  const [enableBtn, setEnableBtn] = useState<boolean>(false);
+
+  // Errores de formulario
+  const [errors, setErrors] = useState({
+    document: "",
+    birth: "",
+    phone: "",
+    protection_policy: "",
+    shipping_policy: "",
+  });
+
+  // ===================================================================
+  // EFECTOS
+  // ===================================================================
+  // Para habilitar Boton
+  useEffect(() => {
+    if (
+      !document.length ||
+      !birth.length ||
+      !phone.length ||
+      errors.document.length ||
+      errors.birth.length ||
+      errors.phone.length ||
+      !protection_policy ||
+      !shipping_policy
+    )
+      return setEnableBtn(false);
+
+    // Si todos los campos estan correctamente llenados y no hay errores, habilitar boton
+    setEnableBtn(true);
+  }, [document, birth, phone, protection_policy, shipping_policy, errors]);
+
+  // ===================================================================
+  // FUNCIONES VALIDADORAS
+  // ===================================================================
+  const validateInput = ({ target }: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = target;
+    let errorMessage = "";
+
+    switch (target.name) {
+      case "document":
+        errorMessage = type === "dni" ? validateDNI(value) : validateCE(value);
+        break;
+      case "birth":
+        errorMessage = validateDate(value);
+        break;
+      case "phone":
+        errorMessage = validatePhone(value);
+        break;
+      default:
+        break;
+    }
+
+    setErrors({
+      ...errors,
+      [name]: errorMessage,
+    });
   };
 
-  const selectOptions: IOption[] = [
-    {
-      value: "dni",
-      name: "DNI",
-    },
-    {
-      value: "ce",
-      name: "C.E.",
-    },
-  ];
+  // Validacion de todo el formulario
+  const isFormValid = (): boolean => {
+    const documentError = type === "dni" ? validateDNI(document) : validateCE(document);
+    const birthError = validateDate(birth);
+    const phoneError = validatePhone(phone);
+    const protectionPolicyError = protection_policy ? "" : "No aceptado";
+    const shippingPolicyError = shipping_policy ? "" : "No aceptado";
+
+    setErrors({
+      ...errors,
+      document: documentError,
+      birth: birthError,
+      phone: phoneError,
+      protection_policy: protectionPolicyError,
+      shipping_policy: shippingPolicyError,
+    });
+
+    if (
+      errors.document.length ||
+      errors.birth.length ||
+      errors.phone.length ||
+      !protection_policy ||
+      !shipping_policy
+    ) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    console.log("hello!!!");
+    e.preventDefault();
+    if (!isFormValid()) {
+      console.log("No se pudo enviar el formulario. Completa los campos!");
+      return;
+    }
+
+    dispatch(verifyDocInDB(formValues));
+    console.log("Formulario Válido!!");
+  };
 
   return (
     <div className={styles.form}>
@@ -29,22 +148,68 @@ const Form = () => {
         </h2>
         <p>Ingresa los datos para comenzar.</p>
       </div>
-      <form className={styles.form__box}>
+      <form className={styles.form__box} onSubmit={handleSubmit} onInvalid={handleSubmit}>
         <div className={styles["form__input-select"]}>
-          <Select name="documento" options={selectOptions} />
-          <Input type="text" id="input-dni" placeholder="Nro de Documento" onBlur={handleBlur} />
+          <Select
+            name="type"
+            options={selectOptions}
+            onChange={(e) => handleSelectChange(e, "document")}
+          />
+          <Input
+            name="document"
+            type="number"
+            placeholder="Nro de documento"
+            onChange={handleInputChange}
+            onBlur={validateInput}
+            value={document}
+            errors={errors.document}
+          />
         </div>
-        <Input type="text" id="input-date" placeholder="Fecha de Nacimiento" onBlur={handleBlur} />
-        <Input type="text" id="input-phone" placeholder="Celular" onBlur={handleBlur} />
+        <div className={styles["form__input"]}>
+          <Input
+            name="birth"
+            type="text"
+            placeholder="Fecha de Nacimiento"
+            onChange={handleInputChange}
+            onBlur={validateInput}
+            value={birth}
+            errors={errors.birth}
+          />
+        </div>
+        <div className={styles["form__input"]}>
+          <Input
+            name="phone"
+            type="text"
+            placeholder="Celular"
+            onChange={handleInputChange}
+            onBlur={validateInput}
+            value={phone}
+            errors={errors.phone}
+          />
+        </div>
         <div className={styles["form__verify"]}>
-          <Checkbox>
+          <Checkbox
+            name="protection_policy"
+            onChange={(e) => {
+              handleCheckboxChange(e);
+              // handleBtn();
+            }}
+            errors={errors.protection_policy}
+          >
             Acepto la{" "}
             <span>
               Política de Protección de Datos
               <br /> Personales y los Términos y Condiciones.
             </span>
           </Checkbox>
-          <Checkbox>
+          <Checkbox
+            name="shipping_policy"
+            onChange={(e) => {
+              handleCheckboxChange(e);
+              // handleBtn();
+            }}
+            errors={errors.shipping_policy}
+          >
             Acepto la{" "}
             <span>
               Política de Envío de Comunicaciones
@@ -52,10 +217,13 @@ const Form = () => {
             </span>
           </Checkbox>
         </div>
-        <div className="form__button">
-          <Button>Comencemos</Button>
+        <div className={styles.form__button}>
+          <Button type="submit" disabled={enableBtn}>
+            Comencemos
+          </Button>
         </div>
       </form>
+      <pre className="block">{JSON.stringify(errors, null, 2)}</pre>
     </div>
   );
 };

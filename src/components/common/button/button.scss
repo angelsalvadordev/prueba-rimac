@@ -14,14 +14,15 @@
   color: $color-light;
   transition: all 0.15s;
 
+  @include font-primary-bold-14;
+
   &:focus {
     outline: none;
   }
 
-  @extend %font-primary-bold-14;
-
   &--disabled {
     background-color: $color-gray-6;
     color: $color-gray-4;
+    pointer-events: none;
   }
 }
