@@ -1,6 +1,7 @@
 export const LOGIN = "LOGIN";
 
 export interface ILoginInfo {
+  isLogin?: boolean;
   existInDB?: boolean;
   type: string;
   document: string;

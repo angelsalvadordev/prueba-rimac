@@ -1,23 +1,33 @@
-import Layout from "components/layout";
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { routes, IRoute } from "routes/routes";
+import { PrivateRoute } from "./private-route";
 
 function RouterApp() {
+  const { isLogin } = useSelector((state: any) => state.login);
   return (
     <Router>
-      {/* <Layout> */}
       <Switch>
-        {routes.map(({ path, isExact, Component }: IRoute) => (
-          <Route path={path} key={path} exact={isExact}>
-            <Suspense fallback={<span>Espere...</span>}>
-              <Component />
-            </Suspense>
-          </Route>
-        ))}
-        {/* <Route component={NotFoundPage} /> */}
+        {routes.map(({ path, isExact, Component, privateRoute }: IRoute) =>
+          privateRoute ? (
+            <PrivateRoute
+              path={path}
+              key={path}
+              exact={isExact}
+              isAuthenticated={isLogin}
+              component={Component}
+            />
+          ) : (
+            <Route path={path} key={path} exact={isExact}>
+              <Suspense fallback={<span>Espere...</span>}>
+                <Component />
+              </Suspense>
+            </Route>
+          )
+        )}
+        <Redirect to="/" />
       </Switch>
-      {/* </Layout> */}
     </Router>
   );
 }

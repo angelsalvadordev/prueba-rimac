@@ -4,14 +4,16 @@ import Input from "components/common/input";
 import Select from "components/common/select";
 import { FormEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { verifyDocInDB } from "store/actions/auth";
 import useForm from "utilities/hooks/useForm";
 import { IOption } from "utilities/types/select";
 import { validateCE, validateDate, validateDNI, validatePhone } from "utilities/validators/inputs";
 import styles from "./form.module.scss";
 
-const Form = (props: any) => {
-  console.log("[PROPS] ", props);
+const Form = () => {
+  const history = useHistory();
+
   // Opciones para componente select
   const selectOptions: IOption[] = [
     { value: "dni", name: "DNI" },
@@ -136,8 +138,10 @@ const Form = (props: any) => {
       return;
     }
 
-    dispatch(verifyDocInDB(formValues));
-    console.log("Formulario Válido!!");
+    dispatch(verifyDocInDB(formValues)).then(() => {
+      console.log("Formulario Válido!!");
+      history.push("/insured");
+    });
   };
 
   return (
@@ -223,7 +227,6 @@ const Form = (props: any) => {
           </Button>
         </div>
       </form>
-      <pre className="block">{JSON.stringify(errors, null, 2)}</pre>
     </div>
   );
 };

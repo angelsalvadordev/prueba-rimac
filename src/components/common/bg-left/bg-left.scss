@@ -31,11 +31,13 @@
     position: absolute;
     top: 95px;
     right: -48px;
+    transform: skew(0, -5deg);
 
     @include responsive(xl) {
       height: 448px;
       top: 130px;
       right: -150px;
+      transform: skew(0);
     }
   }
 }

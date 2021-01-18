@@ -1,6 +1,7 @@
 import { LOGIN, ILoginInfo, loginActionTypes } from "store/types/auth";
 
 const initialState: ILoginInfo = {
+  isLogin: false,
   existInDB: false,
   type: "",
   document: "",
@@ -11,9 +12,10 @@ const initialState: ILoginInfo = {
 export const loginReducer = (state = initialState, action: loginActionTypes): ILoginInfo => {
   switch (action.type) {
     case LOGIN:
-      const { existInDB, type, document, birth, phone } = action.payload;
+      const { isLogin, existInDB, type, document, birth, phone } = action.payload;
       return {
         ...state,
+        isLogin,
         existInDB,
         type,
         document,

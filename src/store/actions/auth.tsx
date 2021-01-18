@@ -5,7 +5,7 @@ import { userInfoActionTypes } from "store/types/info-user";
 import { ApiDataService } from "./../../services/api-data";
 import { saveUser } from "./info-user";
 
-export const verifyDocInDB = (loginInfo: ILoginInfo) => {
+export const verifyDocInDB = (loginInfo: ILoginInfo): any => {
   return async (dispatch: Dispatch<loginActionTypes | userInfoActionTypes>) => {
     try {
       const verifyDoc = new UserService();
@@ -22,6 +22,7 @@ export const verifyDocInDB = (loginInfo: ILoginInfo) => {
         loginInfo.existInDB = false;
       }
 
+      loginInfo.isLogin = true;
       dispatch(login(loginInfo));
     } catch {
       console.log("No se pudo hacer la consulta a db");
