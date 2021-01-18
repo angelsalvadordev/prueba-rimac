@@ -1,46 +1,89 @@
-# Getting Started with Create React App
+# 📦 PRUEBA INDRA - RIMAC
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![simple webpack boilerplate by angel salvador](https://repository-images.githubusercontent.com/330041103/08b4fc80-591b-11eb-93f2-05a25c684360)
 
-## Available Scripts
+## 📝 Resumen
 
-In the project directory, you can run:
+Prueba técnica usando como framework React JS junto con Typescript y creación de store global con Redux.
 
-### `npm start`
+## 👨‍💻 Tecnologias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- Redux
+- Typescript
+- React Router Dom
+- Sass
+- Axios
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🧐 Estructura de carpetas
 
-### `npm test`
+```
+.
+├── src
+     ├─ assets
+          ├─ images
+     ├─ components
+          ├─ common
+          ├─ layout
+          ├─ views
+     ├─ routes
+          ├─ private-route.tsx
+          ├─ router.tsx
+          ├─ routes.tsx
+     ├─ services
+          ├─ api-data.tsx
+          ├─ user-service.tsx
+     ├─ store
+          ├─ actions
+          ├─ reducers
+          ├─ types
+          ├─ store.tsx
+     ├─ style
+          ├─ base
+          ├─ config
+          ├─ layout
+          ├─ lib
+          ├─ themes
+          ├─ style.scss
+     ├─ utilities
+          ├─ hooks
+          ├─ types
+          ├─ validators
+├── App.tsx
+├── index.tsx
+├── .
+├── .
+├── .
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
 
-### `npm run build`
+## 💻 Para ejecutar
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+  Paso 1: npm install
+  Paso 2: npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 😃 Uso
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para ingresar como usuario que existe en base de datos, coloque en el campo dni `87654321`.
+Para ingresar como usuario que no existe en base de datos, coloque cualquier cifra de 8 dígitos.
 
-### `npm run eject`
+## 💡 Características
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Creación de una estructura de carpetas escalable
+- Protección de rutas (Por ejemplo /insured)
+- Creación y conexión de store global con Redux
+- Creación de custom hook useForm()
+- Validación de formularios y uso de useState()
+- Uso de useEffect() para habilitar boton
+- Creación de interfaces para tipado
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🤔 Observaciones
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Se hizo la creación de un método falso para capturar datos `getFakeData()`, ya que no se encuentra habilitado actualmente el API
+  [Obtener datos persona](https://freestyle.getsandbox.com/dummy/obtenerdatospersona), sin embargo existe un método preparado para consumir el API llamado `getData()`. Esto se encuentra en la carpeta `src/services/api-data.tsx`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 👀 Demo
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Web Prueba Indra/Rimac](https://prueba-indra-rimac.web.app/)
