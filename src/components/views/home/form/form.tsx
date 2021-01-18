@@ -131,15 +131,12 @@ const Form = () => {
   };
 
   const handleSubmit = (e: FormEvent) => {
-    console.log("hello!!!");
     e.preventDefault();
     if (!isFormValid()) {
-      console.log("No se pudo enviar el formulario. Completa los campos!");
       return;
     }
 
     dispatch(verifyDocInDB(formValues)).then(() => {
-      console.log("Formulario Válido!!");
       history.push("/insured");
     });
   };

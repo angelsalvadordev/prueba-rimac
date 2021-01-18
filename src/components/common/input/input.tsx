@@ -14,7 +14,6 @@ const Input = ({
   onFocus,
   onBlur,
 }: IInput) => {
-  console.log(errors);
   return (
     <div className="input">
       <div className="input__box">
