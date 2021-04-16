@@ -56,22 +56,14 @@ const Form = () => {
   // EFECTOS
   // ===================================================================
   // Para habilitar Boton
-  useEffect(() => {
-    if (
-      !document.length ||
-      !birth.length ||
-      !phone.length ||
-      errors.document.length ||
-      errors.birth.length ||
-      errors.phone.length ||
-      !protection_policy ||
-      !shipping_policy
-    )
-      return setEnableBtn(false);
+  useEffect(() => {  
+    const fields = Object.values(formValues).some(field => !field)
+    const fieldErrors = Object.values(errors).some(error => error);
 
-    // Si todos los campos estan correctamente llenados y no hay errores, habilitar boton
-    setEnableBtn(true);
-  }, [document, birth, phone, protection_policy, shipping_policy, errors]);
+    // Comprobar si algun field esta vacio o si tiene algun error para habilitar botton
+    fields || fieldErrors ? setEnableBtn(false) : setEnableBtn(true)
+
+  }, [formValues, errors]);
 
   // ===================================================================
   // FUNCIONES VALIDADORAS
